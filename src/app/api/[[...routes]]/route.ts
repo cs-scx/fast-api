@@ -13,14 +13,12 @@ type EnvConfig = {
     UPSTASH_REDIS_REST_URL: string;
 };
 
+app.use("/*", cors());
+
 app.get("/search", async (c) => {
     try {
-        //const { UPSTASH_REDIS_REST_TOKEN, UPSTASH_REDIS_REST_URL } =
-        //env<EnvConfig>(c);
-
-        const UPSTASH_REDIS_REST_URL = "https://us1-new-flea-39933.upstash.io";
-        const UPSTASH_REDIS_REST_TOKEN =
-            "AZv9ASQgNzUwMzUwYmMtYjg5Ny00NmVhLWJhYTAtZTYwMjk5OGMyNGU3MDEzNDBkZDc5NWM2NGNlZmFiNTAyOTE1YTNhZDVmMTc=";
+        const { UPSTASH_REDIS_REST_TOKEN, UPSTASH_REDIS_REST_URL } =
+            env<EnvConfig>(c);
 
         const redis = new Redis({
             token: UPSTASH_REDIS_REST_TOKEN,
